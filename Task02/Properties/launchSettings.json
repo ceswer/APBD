@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "Main": {
+    "Task02": {
       "commandName": "Project",
       "commandLineArgs": "Sources\\data.csv Sources\\result.json json"
     }
