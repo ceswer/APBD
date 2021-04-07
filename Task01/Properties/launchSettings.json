@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FindEmailAddresses": {
+      "commandName": "Project",
+      "commandLineArgs": "https://kaktus24.pl/"
+    }
+  }
+}

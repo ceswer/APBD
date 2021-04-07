@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Main": {
+      "commandName": "Project",
+      "commandLineArgs": "Sources\\data.csv Sources\\result.json json"
+    }
+  }
+}
