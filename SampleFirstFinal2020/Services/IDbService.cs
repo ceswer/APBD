@@ -9,5 +9,6 @@ namespace SampleFirstFinal2020.Services
     public interface IDbService
     {
         Task<IEnumerable<AnimalForGetting>> GetAnimals(string orderBy);
+        Task AddAnimal(Animal animal);
     }
 }

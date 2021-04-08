@@ -30,8 +30,9 @@ namespace SampleFirstFinal2020.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> AddAnimal([FromBody] )
+        public async Task<IActionResult> AddAnimal([FromBody] Animal animal)
         {
+            await DbService.AddAnimal(animal);
             return Ok();
         }
     }
