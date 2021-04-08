@@ -23,15 +23,15 @@ namespace SampleFirstFinal2020.Services
             await connection.OpenAsync();
 
             if (orderBy == null)
-                cmd.CommandText = "SELECT Name, Type, AdmissionDate, LastName FROM AnimalForGetting INNER JOIN Owner ON AnimalForGetting.IdOwner = Owner.IdOwner ORDER BY AdmissionDate DESC";
+                cmd.CommandText = "SELECT Name, Type, AdmissionDate, LastName FROM Animal INNER JOIN Owner ON AnimalForGetting.IdOwner = Owner.IdOwner ORDER BY AdmissionDate DESC";
             else if (!columns.Contains(orderBy.ToLower()) && !orderBy.ToLower().Contains("desc"))
                 throw new Exception("Invalid orderBy parameter!");
             else
                 foreach (string column in columns)
                     if (orderBy.ToLower().Contains(column) && orderBy.ToLower().Contains("desc"))
-                        cmd.CommandText = $"SELECT Name, Type, AdmissionDate, LastName FROM AnimalForGetting INNER JOIN Owner ON AnimalForGetting.IdOwner = Owner.IdOwner ORDER BY {column} DESC";
+                        cmd.CommandText = $"SELECT Name, Type, AdmissionDate, LastName FROM Animal INNER JOIN Owner ON AnimalForGetting.IdOwner = Owner.IdOwner ORDER BY {column} DESC";
                     else if (orderBy.ToLower().Contains(column))
-                        cmd.CommandText = $"SELECT Name, Type, AdmissionDate, LastName FROM AnimalForGetting INNER JOIN Owner ON AnimalForGetting.IdOwner = Owner.IdOwner ORDER BY {column} ASC";
+                        cmd.CommandText = $"SELECT Name, Type, AdmissionDate, LastName FROM Animal INNER JOIN Owner ON AnimalForGetting.IdOwner = Owner.IdOwner ORDER BY {column} ASC";
 
             using var reader = await cmd.ExecuteReaderAsync();
 
