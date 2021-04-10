@@ -11,8 +11,6 @@ namespace SampleFirstFinal2020.Models
         [Required]
         public int IdProcedure { get; set; }
         [Required]
-        public int IdAnimal { get; set; }
-        [Required]
         public DateTime Date { get; set; }
     }
 }
