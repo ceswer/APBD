@@ -65,12 +65,9 @@ namespace SampleFirstFinal2020.Services
 
                     cmd.CommandText = "SELECT TOP 1 IdAnimal From Animal ORDER BY IdAnimal DESC";
 
-                    int IdAnimal = 0;
-
                     using var rd = await cmd.ExecuteReaderAsync();
-                                    
-                    if (await rd.ReadAsync())
-                        IdAnimal = int.Parse(rd["IdAnimal"].ToString());
+                    await rd.ReadAsync();
+                    int IdAnimal = int.Parse(rd["IdAnimal"].ToString());
 
                     await rd.CloseAsync();
 
