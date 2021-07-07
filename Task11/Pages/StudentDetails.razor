@@ -1,0 +1,58 @@
+﻿@page "/students/{ID:int}"
+@inject IStudentsRepository repository
+
+
+
+@if (student != null)
+{
+    <h1>Student`s Details</h1>
+    <hr />
+    <form action="/students" class="stud-form">
+        <div class="stud-label-left">
+            <label>
+                <span>First name: </span>
+                <input @bind="student.FirstName" />
+            </label>
+
+            <label class="stud-img-label">
+                <span>Avatar: </span>
+                <input @bind="student.URLToPhoto" />
+                <img src="@student.URLToPhoto" title="avatar of student" class="stud-form-img">
+            </label>
+        </div>
+
+        <label>
+            <span>Last name: </span>
+            <input @bind="student.LastName" />
+        </label>
+
+        <label>
+            <span>Birth date: </span>
+            <input type="date" @bind="student.BirthDate" />
+        </label>
+
+        <label>
+            <span>Studies: </span>
+            <input @bind="student.Studies" />
+        </label>
+
+        <button type="submit" class="btn-stud-save">Save</button>
+    </form>
+}
+else
+{
+    <h1>There is no such student!</h1>
+    <hr />
+}
+
+@code {
+    [Parameter]
+    public int ID { get; set; }
+    private Student student;
+
+    protected override void OnInitialized()
+    {
+        student = repository.FindStudent(ID);
+    }
+}
+

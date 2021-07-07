@@ -1,0 +1,97 @@
+﻿@model MovieGenreViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    .button {
+        padding: 10px 20px;
+        font-size: 15px;
+        text-align: center;
+        cursor: pointer;
+        outline: none;
+        color: gray;
+        background-color: white;
+        border: 2.5px solid;
+        border-color: cornflowerblue;
+        border-radius: 10px;
+        box-shadow: 0 2.5px #999;
+    }
+
+        .button:active {
+            border-color: cornflowerblue;
+            background-color: white;
+            box-shadow: 0 2.5px #666;
+            transform: translateY(1px);
+        }
+</style>
+
+
+<h1>Movies</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<form asp-controller="Movies" asp-action="Index" method="get">
+    <p>
+        <select asp-for="Genre" asp-items="Model.Genres" class="button">
+            <option value="">All</option>
+        </select>
+
+        <input type="text" asp-for="Title" class="button" placeholder="Title"/>
+        <input type="submit" value="Filter" class="button"/>
+    </p>
+</form>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Movies[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movies[0].ReleaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movies[0].Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movies[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movies[0].Rating)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Movies)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

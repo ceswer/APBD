@@ -1,0 +1,137 @@
+﻿@page "/students"
+@inject IJSRuntime JsRuntime
+@inject IStudentsRepository repository 
+
+<h1>Students</h1>
+<hr />
+
+<table class="studs-table">
+    <thead>
+        <tr>
+            <th>Photo</th>
+            <th @onclick="SortByFirstName"><span class="text">FirstName</span></th>
+            <th @onclick="SortByLastName"><span class="text">LastName</span></th>
+            <th @onclick="SortByBirthDate"><span class="text">BirthDate</span></th>
+            <th @onclick="SortByStudies"><span class="text">Studies</span></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in students)
+        {
+            <tr>               
+                <td><img src="@s.URLToPhoto" class="stud-image"></td>
+                <td>@s.FirstName</td>
+                <td>@s.LastName</td>
+                <td>@s.BirthDate.ToShortDateString()</td>
+                <td>@s.Studies</td>
+                <td>
+                    <button @onclick="() => Show(s.ID)" class="stud-delete-button">&times;</button>
+                    <a href="/students/@s.ID" class="stud-edit"><span class="text-edit">Edit</span></a>
+                </td>            
+            </tr>  
+        }
+    </tbody>
+</table>
+
+@foreach (var s in students)
+{
+    <div class="submition" id="submition-@s.ID">
+        <div class="submitiom-content">
+            <div class="header">
+                <span class="title">Are you sure you want to delete this student?</span>
+            </div>
+            <from class="body" action="/students">
+                <button @onclick="() => DeleteStudent(s.ID)" class="sub-button" type="submit">Yes</button>
+                <button @onclick="Decline" class="sub-button">No</button>
+            </from>
+        </div>
+    </div>
+}
+
+@code {
+    private List<Student> students;
+
+    protected override void OnInitialized()
+    {
+        students = StudentsRepository.Students;
+    }
+
+    private async Task Show(int ID)
+    {
+        await JsRuntime.InvokeVoidAsync("show", ID);
+    }
+
+    private async Task Decline()
+    {
+        await JsRuntime.InvokeVoidAsync("decline");
+    }
+
+    private async Task Accept()
+    {
+        await JsRuntime.InvokeVoidAsync("accept");
+    }
+
+    private async Task DeleteStudent(int ID)
+    {
+        students.Remove(repository.FindStudent(ID));
+        repository.DeleteStudent(ID);
+        await Accept();
+    }
+
+    private bool order = true;
+    private void SortByFirstName()
+    {
+        if (order == true)
+        {
+            students = students.OrderBy(student => student.FirstName).ToList();
+            order = false;
+        }
+        else
+        {
+            students = students.OrderByDescending(students => students.FirstName).ToList();
+            order = true;
+        }
+    }
+
+    private void SortByLastName()
+    {
+        if (order == true)
+        {
+            students = students.OrderBy(student => student.LastName).ToList();
+            order = false;
+        }
+        else
+        {
+            students = students.OrderByDescending(students => students.LastName).ToList();
+            order = true;
+        }
+    }
+
+    private void SortByBirthDate()
+    {
+        if (order == true)
+        {
+            students = students.OrderBy(student => student.BirthDate).ToList();
+            order = false;
+        }
+        else
+        {
+            students = students.OrderByDescending(students => students.BirthDate).ToList();
+            order = true;
+        }
+    }
+
+    private void SortByStudies()
+    {
+        if (order == true)
+        {
+            students = students.OrderBy(student => student.Studies).ToList();
+            order = false;
+        }
+        else
+        {
+            students = students.OrderByDescending(students => students.Studies).ToList();
+            order = true;
+        }
+    }
+}

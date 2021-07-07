@@ -1,0 +1,123 @@
+﻿.btn-stud-save {
+    border-radius: 10px;
+    padding: 5px 25px;
+}
+
+.stud-form-img {
+    height: 96px;
+    width: 96px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+.stud-form label input {
+    border-radius: 10px;
+    width: 400px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.stud-form label {
+    display: block;
+}
+
+.stud-form lable span, input, image {
+    display: flex;
+}
+
+.stud-label-left {
+    display: flex;
+}
+
+.stud-img-label {
+    margin-left: 200px;
+}
+
+    .studs-table tr th {
+        border: 1px solid black;
+        padding: 10px 20px;
+        text-align: center;
+    }
+
+    .studs-table tr th .text {
+        cursor: pointer;
+    }
+
+    .studs-table tr th .text:hover {
+        color: crimson;
+    }
+
+    .studs-table tr td {
+        border: 1px solid black;
+        padding: 10px 20px;
+        text-align: center;
+    }
+
+    .studs-table tr td:last-child {
+        border: none;
+    }
+
+    .stud-delete-button {
+        color: white;
+        background-color: crimson;
+        padding: 5px 10px;
+        font-weight: bold;
+        border-radius: 10px;
+    }
+
+    .stud-image {
+        width: 48px;
+        height: 48px;
+    }
+
+    .submition {
+        display: none;
+        position: fixed;
+        z-index: 10;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.75);
+    }
+
+    .submitiom-content {
+        background-color: white;
+        margin: 20% auto;
+        padding: 10px;
+        min-width: 250px;
+        width: 20%;
+        border: 1px solid black;
+        border-radius: 20px;
+    }
+
+    .header {
+        padding: 10px 15px
+    }
+
+    .body {
+        display: flex;
+    }
+
+    .sub-button {
+        margin: auto;
+        min-width: 25px;
+        width: 125px;
+        max-width: 250px;
+        height: 50px;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+
+    .sub-button:last-child {
+        background-color: red;
+        color: white;
+    }
+
+    .stud-edit {
+        margin-left: 10px;
+        font-weight: bold;
+    }
